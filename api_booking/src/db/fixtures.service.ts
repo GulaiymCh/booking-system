@@ -5,6 +5,7 @@ import { User, UserRole } from "../user/entities/user.entity";
 import { Booking, BookStatus } from "../booking/entities/book.entity";
 import { Room } from "../room/entities/room.entity";
 import * as bcrypt from 'bcryptjs';
+import {Notifications} from "../notification/entities/notification.entity";
 
 @Injectable()
 export class FixturesService {
@@ -24,6 +25,7 @@ export class FixturesService {
     await queryRunner.startTransaction();
 
     try {
+      await queryRunner.manager.delete(Notifications, {});
       await queryRunner.manager.delete(Booking, {});
       await queryRunner.manager.delete(Room, {});
       await queryRunner.manager.delete(User, {});
